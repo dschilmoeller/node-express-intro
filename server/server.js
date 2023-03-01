@@ -29,5 +29,5 @@ app.get('/quotes', function(req, res) {
         res.send(quoteList);
         // respond with a status code.
         // res.status(400).send('This request is broken.')
-
 })
+
