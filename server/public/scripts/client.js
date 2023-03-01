@@ -23,9 +23,12 @@ function getQuotes() {
         
         // .then does something with the response from the server.
     }).then(function(response) {
+
         // the response will grab the returned quotelist
         // function here is an anonymous ('blind') function, executes only this once and is contained
         // within another function so will not be referenced again.
+        // if quote list was added to by POST request
+        // then it will include the new quote(s).
 
         console.log('AJAX Success!', response);
         
@@ -39,8 +42,29 @@ function getQuotes() {
     }).catch(function() {
         alert('Request Failed. Try again later.')
     });
+    // Listener for newQuoteBtn
+    $('#newQuoteBtn').on('click', addQuote);
 }
 
+function addQuote(){ 
+    // console.log('inside addQuote function');
+    // make a POST request to the server
+
+    $.ajax({
+        method: 'POST', // must be capitalized
+        url: '/', // route
+        data: { // becomes req.body in server?
+            text: 'Is that rock getting bigger?', // req.body.text
+            author: 'Anonymous Dinosaur' // req.body.author
+        }
+    }).then(function(response) {
+        console.log('POST to / functioning.');
+        getQuotes();
+    }).catch( () => {
+        alert('POST to / Failed. Murderous Hamsters deployed.');
+    })
+
+}
 
 function renderToDOM(quotes) {
     // empty DOM    
