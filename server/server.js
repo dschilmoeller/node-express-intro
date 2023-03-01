@@ -23,10 +23,13 @@ const quoteList = require("./modules/quoteList");
 // the normal url is : http://localhost:5000/
 // to use this GET request, must go to http://localhost:5000/quotes
 app.get('/quotes', function(req, res) {
-    console.log('Yoyoyo in the req/res function');
+    console.log('Yo Schwami in the req/res function');
     // send back the list of quotes
         // we can see in our browser
         res.send(quoteList);
+        // res.send acts similar to a return; any code after this
+        // will do nothing.
+
         // respond with a status code.
         // res.status(400).send('This request is broken.')
 })
